@@ -14,8 +14,19 @@
 				</view>
 			</template>
 		</nav-bar>
-		<view class="bg-info" style="height: 1000px;">
-			12322
+		<!-- 搜索框 -->
+			<view class="px-3 py-2">
+				<view class="position-relative">
+					<view style="height: 70rpx;width: 70rpx;position: absolute;top: 0;left: 0;"
+					class="flex align-center justify-center text-light-muted">
+					<text class="iconfont icon-sousuo"></text>
+					</view>
+				</view>
+				<input type="text"
+					   style="height: 70rpx;padding-left: 70rpx;"
+					   class="bg-light font-md rounded-circle"
+					   placeholder="搜索网盘文件"/>
+			</view>
 		</view>
 	</view>
 </template>

@@ -19,4 +19,5 @@
 	@import url('/common/common.css');
 	/* 引入通用free样式库 */
 	@import url('/common/free.css');
+	@import url('/common/iconfont.css');
 </style>

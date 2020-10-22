@@ -2,17 +2,35 @@
 	<view>
 	<!-- 自定义导航栏 -->
 		<nav-bar>
-			<text slot="left" class="font-md ml-3">首页</text>
+			
+			<template v-if="checkCount === 0">
+				<text class="font-md ml-3" slot='left'>首页</text>
+				<template slot="right">
+					<view style="width: 60rpx;height: 60rpx;" class="flex align-center justify-center bg-light rounded-circle mr-3">
+						<text class="iconfont icon-hao"></text>
+					</view>
+					<view class="flex align-center justify-center bg-light rounded-circle mr-3">
+						<text class="iconfont icon-gengduo"></text>
+					</view>
+				</template>
+			</template>
+			<template v-else>
+				<view slot='left' class="font-md ml-3 text-primary">取消</view>
+				<text class="font-md font-weight-bold">已选中{{checkCount}}</text>
+				<view slot='right' class="font-md ml-3 text-primary">全选</view>
+			</template>
+			
+			<!-- <text slot="left" class="font-md ml-3">首页</text>
 			<template slot="right">
 				<view style="width: 60rpx;height: 60rpx;"
 					  class="flex align-center justify-center bg-icon rounded-circle mr-3">
-					<text class="iconfont icon-gengduo"></text>
+					<text class="iconfont icon-hao"></text>
 				</view>
 				<view style="width: 60rpx;height: 60rpx;"
 					  class="flex align-center justify-center bg-icon rounded-circle mr-3">
 					<text class="iconfont icon-gengduo"></text>
 				</view>
-			</template>
+			</template> -->
 		</nav-bar>
 		<!-- 搜索框 -->
 			<view class="px-3 py-2">
@@ -27,9 +45,10 @@
 					   class="bg-light font-md rounded-circle"
 					   placeholder="搜索网盘文件"/>
 			</view>
-			<view v-for="(item,index) in list" :key="index">
-						<fList :item="item"></fList>
-			</view>
+			<f-list v-for="(item,index) in list" :key="index" :item="item" :index="index" @select="select"></f-list>
+			<!-- <view v-for="(item,index) in list" :key="index">
+						<fList :item="item" @select="select"></fList>
+			</view> -->
 	</view>
 </template>
 
@@ -77,11 +96,24 @@
 			
 		},
 		methods: {
-
+			select(e) {
+				//接受到子组件传递过来的索引选中状态，将对应的list中的数据更新
+				this.list[e.index].checked = e.value
+			}
 		},
 		components:{
 			navBar,
 			fList
+		},
+		computed: {
+			//选中列表
+			checkList() {
+				return this.list.filter(item => item.checked)
+			},
+			//选中数量
+			checkCount() {
+				return this.checkList.length
+			}
 		}
 	}
 </script>

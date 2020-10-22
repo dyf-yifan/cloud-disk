@@ -15,22 +15,11 @@
 				</template>
 			</template>
 			<template v-else>
-				<view slot='left' class="font-md ml-3 text-primary">取消</view>
+				<view slot='left' class="font-md ml-3 text-primary" @click="handleCheckAll(false)">取消</view>
 				<text class="font-md font-weight-bold">已选中{{checkCount}}</text>
-				<view slot='right' class="font-md ml-3 text-primary">全选</view>
+				<view slot='right' class="font-md ml-3 text-primary" @click="handleCheckAll(true)">全选</view>
 			</template>
 			
-			<!-- <text slot="left" class="font-md ml-3">首页</text>
-			<template slot="right">
-				<view style="width: 60rpx;height: 60rpx;"
-					  class="flex align-center justify-center bg-icon rounded-circle mr-3">
-					<text class="iconfont icon-hao"></text>
-				</view>
-				<view style="width: 60rpx;height: 60rpx;"
-					  class="flex align-center justify-center bg-icon rounded-circle mr-3">
-					<text class="iconfont icon-gengduo"></text>
-				</view>
-			</template> -->
 		</nav-bar>
 		<!-- 搜索框 -->
 			<view class="px-3 py-2">
@@ -99,6 +88,12 @@
 			select(e) {
 				//接受到子组件传递过来的索引选中状态，将对应的list中的数据更新
 				this.list[e.index].checked = e.value
+			},
+			//全选、取消全选
+			handleCheckAll(checked) {
+				this.list.forEach(item => {
+					item.checked = checked;
+				})
 			}
 		},
 		components:{

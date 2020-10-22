@@ -20,7 +20,7 @@
 			<view class="position-relative">
 				<view style="height: 70rpx;width: 70rpx;position: absolute;top: 0;left: 0;" class="flex align-center justify-center text-light-muted">
 					<text class="iconfont icon-search"></text>
-				</view>
+				</view> 
 			</view>
 			<input type="text" style="height: 70rpx;padding-left: 70rpx;" class="bg-light font-md rounded-circle" placeholder="搜索网盘文件" />
 		</view>
@@ -35,19 +35,22 @@
 				<view class="flex align-center bg-primary text-white fixed-bottom" style="height: 115rpx;">
 					<!-- 根据元素个数等分容器，所以要么四等分，要么两等分，行高的修改可以让图标和文字之间的距离变得合理，点击还会变色 :hover-class -->
 					<view class="flex-1 flex flex-column align-center justify-center" style="line-height: 1.5;"
-					v-for="(item,index) in actions" :key="index" hover-class="bg-hover-primary">
+					v-for="(item,index) in actions" :key="index" hover-class="bg-hover-primary"
+					@click="handleBottomEvent(item)">
 						<text class="iconfont" :class="item.icon"></text>
 						{{item.name}}
 					</view>
 				</view>
 			</view>
 		</view>
+	<f-dialog ref="dialog">是否删除选中的文件？</f-dialog>
 	</view>
-</template>
+</template> 
 
 <script>
 import navBar from '@/components/common/nav-bar.vue';
 import fList from '@/components/common/f-list.vue';
+import fDialog from '@/components/common/f-dialog.vue'
 export default {
 	data() {
 		return {
@@ -96,11 +99,25 @@ export default {
 			this.list.forEach(item => {
 				item.checked = checked;
 			});
+		},
+		handleBottomEvent(item) {
+			switch(item.name) {
+				case '删除':
+					this.$refs.dialog.open(close => {
+						close();
+						console.log('删除文件');
+						console.log(this.checkList);
+					}); 
+					break;
+				default:
+					break;
+			}
 		}
 	},
 	components: {
 		navBar,
-		fList
+		fList,
+		fDialog
 	},
 	computed: {
 		//选中列表

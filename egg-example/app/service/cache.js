@@ -14,7 +14,7 @@ class CacheService extends Service {
     if (isChildObject) {
       data = data.map((item) => {
         return JSON.parse(item)
-      })
+      });
     }
     return data
   }

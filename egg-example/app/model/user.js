@@ -46,12 +46,6 @@ module.exports = (app) => {
 				this.setDataValue('password', hmac.digest("hex"));
 			}
 		},
-		// password: {
-		//   type: STRING,
-		//   allowNull: false,
-		//   defaultValue: "",
-		//   comment: "密码",
-		// },
 		avatar: {
 			type: STRING,
 			allowNull: true,

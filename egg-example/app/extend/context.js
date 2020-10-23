@@ -10,6 +10,16 @@ module.exports = {
     this.body = { msg, data };
     this.status = code;
   },
+  // 生成token
+    getToken(value) {
+      return this.app.jwt.sign(value, this.app.config.jwt.secret);
+    },
+    // 生成唯一ID
+    genID(length) {
+      return Number(
+        Math.random().toString().substr(3, length) + Date.now()
+      ).toString(36);
+    },
   // 判断是否是移动端
   ismobile(ctx){
       let userAgent = this.request.header['user-agent'].toLowerCase();

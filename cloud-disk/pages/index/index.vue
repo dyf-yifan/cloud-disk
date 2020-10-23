@@ -26,7 +26,7 @@
 			</view>
 			<input type="text" style="height: 70rpx;padding-left: 70rpx;" class="bg-light font-md rounded-circle" placeholder="搜索网盘文件" />
 		</view>
-		<f-list v-for="(item, index) in list" :key="index" :item="item" :index="index" @select="select"></f-list>
+		<f-list v-for="(item, index) in list" :key="index" @click="doEvent(item)" :item="item" :index="index" @select="select"></f-list>
 
 		<!-- 底部操作条 -->
 		<!-- 选中个数大于0才会出现这个操作条 -->
@@ -96,7 +96,7 @@ export default {
 				{
 					type: 'image',
 					name: '风景.jpg',
-					create_time: '2020-10-21 08:00',
+					data: 'https://avatars2.githubusercontent.com/u/55441045?s=400&v=4',
 					checked: false
 				},
 				{
@@ -218,6 +218,25 @@ export default {
 		},
 		openAddDialog() {
 			this.$refs.add.open();
+		},
+		// 
+		doEvent(item) {
+			// 列表点击事件
+			switch(item.type){
+				case 'image': //预览图片
+				let images = this.list.filter(item => {
+					return item.type === 'image'
+				})
+				uni.previewImage({
+					current: item.data,
+					urls:images.map(item => item.data)
+				})
+					break;
+				case 'video':
+				
+				default:
+					break;
+			}
 		}
 	},
 	components: {

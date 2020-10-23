@@ -1817,7 +1817,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("view")
+  return _c("view", [
+    _c(
+      "view",
+      {
+        staticClass: _vm._$s(1, "sc", "p-3 flex align-center"),
+        attrs: { _i: 1 }
+      },
+      [
+        _c("image", {
+          staticClass: _vm._$s(2, "sc", "rounded-circle flex-shrink mr-3"),
+          attrs: { _i: 2 }
+        }),
+        _c(
+          "view",
+          {
+            staticClass: _vm._$s(
+              3,
+              "sc",
+              "flex-1 flex flex-column text-muted font"
+            ),
+            attrs: { _i: 3 }
+          },
+          [
+            _c(
+              "view",
+              {
+                staticClass: _vm._$s(4, "sc", "flex align-end"),
+                attrs: { _i: 4 }
+              },
+              [
+                _c("text", {
+                  staticClass: _vm._$s(5, "sc", "font-lg text-dark mr-2"),
+                  attrs: { _i: 5 }
+                })
+              ]
+            ),
+            _c("text", {
+              staticClass: _vm._$s(6, "sc", "text-ellipsis"),
+              attrs: { _i: 6 }
+            })
+          ]
+        )
+      ]
+    ),
+    _c("view", { staticClass: _vm._$s(7, "sc", "bg-light"), attrs: { _i: 7 } }),
+    _c("view", { staticClass: _vm._$s(8, "sc", "p-3"), attrs: { _i: 8 } }, [
+      _c("progress", {
+        staticClass: _vm._$s(9, "sc", "mb-3"),
+        attrs: { _i: 9 }
+      }),
+      _c(
+        "view",
+        {
+          staticClass: _vm._$s(
+            10,
+            "sc",
+            "flex align-center justify-between font"
+          ),
+          attrs: { _i: 10 }
+        },
+        [
+          _c("text", {
+            staticClass: _vm._$s(11, "sc", "text-light-muted"),
+            attrs: { _i: 11 }
+          }),
+          _c("text", {
+            staticClass: _vm._$s(12, "sc", "text-warning"),
+            attrs: { _i: 12 }
+          })
+        ]
+      )
+    ]),
+    _c("view", {
+      staticClass: _vm._$s(13, "sc", "bg-light"),
+      attrs: { _i: 13 }
+    }),
+    _c(
+      "view",
+      {
+        staticClass: _vm._$s(14, "sc", "flex justify-between align-center p-3"),
+        attrs: { _i: 14 }
+      },
+      [
+        _c("text", {
+          staticClass: _vm._$s(15, "sc", "text-muted font"),
+          attrs: { _i: 15 }
+        }),
+        _c("image", {
+          attrs: {
+            src: _vm._$s(16, "a-src", __webpack_require__(/*! ../../static/you.png */ 58)),
+            _i: 16
+          }
+        })
+      ]
+    )
+  ])
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -1845,7 +1940,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _E_g
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0; //\n//\n//\n//\n//\n//\nvar _default =\n{\n  data: function data() {\n    return {};\n\n\n  } };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbXkvbXkudnVlIl0sIm5hbWVzIjpbImRhdGEiXSwibWFwcGluZ3MiOiJ3RkFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7O0FBRWU7QUFDZEEsTUFEYyxrQkFDUDtBQUNOLFdBQU8sRUFBUDs7O0FBR0EsR0FMYSxFIiwiZmlsZSI6IjQ4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuXG5leHBvcnQgZGVmYXVsdCB7XG5cdGRhdGEoKSB7XG5cdFx0cmV0dXJuIHtcblx0XHRcdFxuXHRcdH07XG5cdH1cbn1cbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///48\n");
+eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0; //\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\nvar _default =\n{\n  data: function data() {\n    return {};\n  },\n  methods: {} };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbXkvbXkudnVlIl0sIm5hbWVzIjpbImRhdGEiLCJtZXRob2RzIl0sIm1hcHBpbmdzIjoid0ZBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFFZTtBQUNkQSxNQURjLGtCQUNQO0FBQ04sV0FBTyxFQUFQO0FBQ0EsR0FIYTtBQUlkQyxTQUFPLEVBQUUsRUFKSyxFIiwiZmlsZSI6IjQ4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG5cbmV4cG9ydCBkZWZhdWx0IHtcblx0ZGF0YSgpIHtcblx0XHRyZXR1cm4ge307XG5cdH0sXG5cdG1ldGhvZHM6IHt9XG59O1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///48\n");
 
 /***/ }),
 /* 49 */
@@ -1975,6 +2070,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _E_g
 
 "use strict";
 eval("/* WEBPACK VAR INJECTION */(function(__f__) {Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;var _default =\n{\n  onLaunch: function onLaunch() {\n    __f__(\"log\", 'App Launch', \" at App.vue:4\");\n  },\n  onShow: function onShow() {\n    __f__(\"log\", 'App Show', \" at App.vue:7\");\n  },\n  onHide: function onHide() {\n    __f__(\"log\", 'App Hide', \" at App.vue:10\");\n  } };exports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 7)[\"default\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vQXBwLnZ1ZSJdLCJuYW1lcyI6WyJvbkxhdW5jaCIsIm9uU2hvdyIsIm9uSGlkZSJdLCJtYXBwaW5ncyI6IjtBQUNlO0FBQ2RBLFVBQVEsRUFBRSxvQkFBVztBQUNwQixpQkFBWSxZQUFaO0FBQ0EsR0FIYTtBQUlkQyxRQUFNLEVBQUUsa0JBQVc7QUFDbEIsaUJBQVksVUFBWjtBQUNBLEdBTmE7QUFPZEMsUUFBTSxFQUFFLGtCQUFXO0FBQ2xCLGlCQUFZLFVBQVo7QUFDQSxHQVRhLEUiLCJmaWxlIjoiNTcuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbmV4cG9ydCBkZWZhdWx0IHtcblx0b25MYXVuY2g6IGZ1bmN0aW9uKCkge1xuXHRcdGNvbnNvbGUubG9nKCdBcHAgTGF1bmNoJylcblx0fSxcblx0b25TaG93OiBmdW5jdGlvbigpIHtcblx0XHRjb25zb2xlLmxvZygnQXBwIFNob3cnKVxuXHR9LFxuXHRvbkhpZGU6IGZ1bmN0aW9uKCkge1xuXHRcdGNvbnNvbGUubG9nKCdBcHAgSGlkZScpXG5cdH1cbn1cbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///57\n");
+
+/***/ }),
+/* 58 */
+/*!*************************************************************!*\
+  !*** F:/front/uni-app/cloud-disk/cloud-disk/static/you.png ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = \"/static/you.png\";//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbbnVsbF0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIiwiZmlsZSI6IjU4LmpzIiwic291cmNlc0NvbnRlbnQiOlsibW9kdWxlLmV4cG9ydHMgPSBcIi9zdGF0aWMveW91LnBuZ1wiOyJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///58\n");
 
 /***/ })
 ],[[0,"app-config"]]]);

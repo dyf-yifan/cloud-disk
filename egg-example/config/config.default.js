@@ -35,6 +35,13 @@ module.exports = appInfo => {
     origin: '*',
     allowMethods: 'GET, PUT, POST, DELETE, PATCH'
   };
+  config.crypto = {
+      secret:  'qhdgw@45ncashdaksh2!#@3nxjdas*_672'
+  };
+  config.valparams = {
+	  locale: 'zh-cn',
+	  throwError: true,
+  };
   config.sequelize = {
       dialect: 'mysql',
       host: '127.0.0.1',

@@ -7,6 +7,27 @@ class HomeController extends Controller {
     const { ctx } = this;
     ctx.body = 'hi, egg';
   }
+  
+  
+  async list() {
+	  this.ctx.body = {
+		  msg: "ok",
+		  data: [
+			  {
+				  name:"微服务",
+				  price:100,
+			  },
+			  {
+				  name:"Java",
+				  price:88,
+			  },
+			  {
+				  name:"JavaScript",
+				  price:77,
+			  },
+		  ],
+	  };
+  }
 }
 
 module.exports = HomeController;

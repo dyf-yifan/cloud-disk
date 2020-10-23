@@ -165,7 +165,15 @@ export default {
 			]
 		};
 	},
-	onLoad() {},
+	onLoad() {
+		uni.request({
+			url:'http://127.0.0.1:7001/list',
+			method:'GET',
+			success: res => {
+				console.log(res.data);
+			}
+		});
+	},
 	methods: {
 		select(e) {
 			//接受到子组件传递过来的索引选中状态，将对应的list中的数据更新

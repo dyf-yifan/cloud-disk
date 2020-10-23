@@ -102,6 +102,7 @@ export default {
 				{
 					type: 'video',
 					name: 'uniapp实战教程.mp4',
+					data:'https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200fba0000bpo4s1b82vu9dp4ehlog&line=0',
 					create_time: '2020-10-21 08:00',
 					checked: false
 				},
@@ -233,7 +234,9 @@ export default {
 				})
 					break;
 				case 'video':
-				
+				uni.navigateTo({
+					url:'../video/video?url='+item.data+'&title='+item.name,
+				})
 				default:
 					break;
 			}

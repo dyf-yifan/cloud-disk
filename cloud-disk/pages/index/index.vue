@@ -8,7 +8,7 @@
 					<view style="width: 60rpx;height: 60rpx;" @tap="openAddDialog" class="flex align-center justify-center bg-light rounded-circle mr-3">
 						<text class="iconfont icon-hao"></text>
 					</view>
-					<view class="flex align-center justify-center bg-light rounded-circle mr-3"><text class="iconfont icon-gengduo"></text></view>
+					<view class="flex align-center justify-center bg-light rounded-circle mr-3" @click="openSortDialog"><text class="iconfont icon-gengduo"></text></view>
 				</template>
 			</template>
 			<template v-else>
@@ -73,6 +73,19 @@
 
 		<!-- 新建文件夹，使用自定义弹出层，使用input作为插槽，绑定data中的newdirname变量 -->
 		<f-dialog ref="newdir"><input type="text" v-model="newdirname" class="flex-1 bg-light rounded px-2" style="height: 95rpx;" placeholder="新建文件夹名称" /></f-dialog>
+	<!-- 排序框，底部弹出，便利排序操作数组，为当前索引绑定文字蓝色样式 -->
+	<uni-popup ref="sort" type="bottom">
+		<view class="bg-white">
+			<view class="flex align-center justify-center py-3 font border-bottom border-light-secondary"
+			v-for="(item,index) in sortOptions" :key="index"
+			:class="index === sortIndex ? 'text-main' : 'text-dark'"
+			hover-class="bg-light"
+			@click="changeSort(index)">
+				{{item.name}}
+			</view>
+			
+		</view>
+	</uni-popup>
 	</view>
 </template>
 
@@ -84,6 +97,15 @@ import uniPopup from '@/components/uni-ui/uni-popup/uni-popup.vue';
 export default {
 	data() {
 		return {
+			sortIndex: 0,
+			sortOptions:[
+				{
+					name: '按名称排序'
+				},
+				{
+					name: '按时间排序'
+				}
+			],
 			newdirname: '',
 			renameValue: '',
 			list: [
@@ -240,6 +262,14 @@ export default {
 				default:
 					break;
 			}
+		},
+		// 切换排序
+		changeSort(index) {
+			this.sortIndex = index;
+			this.$refs.sort.close();
+		},
+		openSortDialog() {
+			this.$refs.sort.open();
 		}
 	},
 	components: {

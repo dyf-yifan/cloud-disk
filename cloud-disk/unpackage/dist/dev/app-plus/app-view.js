@@ -265,7 +265,15 @@ var render = function() {
                     ),
                     _c(
                       "v-uni-view",
-                      { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+                      {
+                        staticClass: _vm._$g(7, "sc"),
+                        attrs: { _i: 7 },
+                        on: {
+                          click: function($event) {
+                            return _vm.$handleViewEvent($event)
+                          }
+                        }
+                      },
                       [
                         _c("v-uni-text", {
                           staticClass: _vm._$g(8, "sc"),
@@ -509,6 +517,35 @@ var render = function() {
               expression: "newdirname"
             }
           })
+        ],
+        1
+      ),
+      _c(
+        "uni-popup",
+        { ref: "sort", attrs: { _i: 34 } },
+        [
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(35, "sc"), attrs: { _i: 35 } },
+            _vm._l(_vm._$g(36, "f"), function(item, index, $23, $33) {
+              return _c(
+                "v-uni-view",
+                {
+                  key: item,
+                  staticClass: _vm._$g("36-" + $33, "sc"),
+                  class: _vm._$g("36-" + $33, "c"),
+                  attrs: { "hover-class": "bg-light", _i: "36-" + $33 },
+                  on: {
+                    click: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    }
+                  }
+                },
+                [_vm._v(_vm._$g("36-" + $33, "t0-0"))]
+              )
+            }),
+            1
+          )
         ],
         1
       )

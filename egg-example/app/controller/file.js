@@ -71,6 +71,14 @@ class FileController extends Controller {
       return ctx.apiSuccess(res)
     }
     ctx.apiFail('上传失败')
+  };
+  // 剩余容量
+  async getSize() {
+	  const {ctx,service} = this
+	  return ctx.apiSuccess({
+		  total_size: ctx.authUser.total_size,
+		  used_size: ctx.authUser.used_size,
+	  })
   }
 }
 

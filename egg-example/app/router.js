@@ -19,4 +19,5 @@ module.exports = app => {
 	//剩余容量
 	router.get('/getsize', controller.user.getSize);
 	router.get('/file', controller.file.list);
+	router.post('/file/createdir', controller.file.createdir);
 };

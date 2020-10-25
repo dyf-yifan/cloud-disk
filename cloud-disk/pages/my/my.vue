@@ -1,11 +1,7 @@
 <template>
 	<view>
 		<view class="p-3 flex align-center">
-			<image
-				src="/static/default.jpg"
-				style="width: 120rpx;height: 120rpx;"
-				class="rounded-circle flex-shrink mr-3"
-			></image>
+			<image src="/static/default.jpg" style="width: 120rpx;height: 120rpx;" class="rounded-circle flex-shrink mr-3"></image>
 			<view class="flex-1 flex flex-column text-muted font">
 				<view class="flex align-end">
 					<text class="font-lg text-dark mr-2">ding</text>
@@ -35,7 +31,10 @@ export default {
 	data() {
 		return {};
 	},
-	methods: {}
+	methods: {},
+	onLoad() {
+		console.log(this.$store.state.user);
+	}
 };
 </script>
 

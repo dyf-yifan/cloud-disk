@@ -201,12 +201,24 @@ export default {
 			switch (item.name) {
 				case '删除':
 					this.$refs.delete.open(close => {
-						this.list = this.list.filter(item => !item.checked);
-						close();
-						uni.showToast({
-							title: '删除成功',
-							icon: 'none'
+						// 加载框过渡
+						uni.showLoading({
+							title: '删除中',
+							mask: false
 						});
+						// 删除接口需要传“1,2,3”这样的参数形式，所以用map取出checkList中内条数据的id，然后用join拼接上逗号
+						let ids = this.checkList.map(item => item.id).join(',');
+						this.$H.post('/file/delete', { ids }, { token: true }).then(res => {
+							// 重新请求下数据
+							this.getData();
+							uni.showToast({
+								title: '删除成功',
+								icon: 'none'
+							});
+							// 结束loading
+							uni.hideLoading();
+						});
+						close();
 					});
 					break;
 				case '重命名':
@@ -225,9 +237,9 @@ export default {
 							// 更新该元素的name值，实时看到效果
 							this.checkList[0].name = this.renameValue;
 							uni.showToast({
-								title:'重命名成功',
-								icon:'none'
-							})
+								title: '重命名成功',
+								icon: 'none'
+							});
 						});
 						close();
 					});

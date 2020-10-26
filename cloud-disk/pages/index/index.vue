@@ -24,7 +24,7 @@
 					<text class="iconfont icon-search"></text>
 				</view>
 			</view>
-			<input type="text" style="height: 70rpx;padding-left: 70rpx;" class="bg-light font-md rounded-circle" placeholder="搜索网盘文件" />
+			<input type="text" style="height: 70rpx;padding-left: 70rpx;" @input="search" class="bg-light font-md rounded-circle" placeholder="搜索网盘文件" />
 		</view>
 		<f-list v-for="(item, index) in list" :key="index" @click="doEvent(item)" :item="item" :index="index" @select="select"></f-list>
 
@@ -186,6 +186,19 @@ export default {
 		this.getData();
 	},
 	methods: {
+		// 搜索功能，关键字为空就走请求所有数据的接口，否则就将文本框实时输入的内容作为关键字进行搜索
+		search(e) {
+			if (e.detail.value == '') {
+				return this.getData();
+			}
+			this.$H
+				.get('/file/search?keyword=' + e.detail.value, {
+					token: true
+				})
+				.then(res => {
+					this.list = this.formatList(res.rows);
+				});
+		},
 		select(e) {
 			//接受到子组件传递过来的索引选中状态，将对应的list中的数据更新
 			this.list[e.index].checked = e.value;

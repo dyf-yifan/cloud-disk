@@ -73,19 +73,21 @@
 
 		<!-- 新建文件夹，使用自定义弹出层，使用input作为插槽，绑定data中的newdirname变量 -->
 		<f-dialog ref="newdir"><input type="text" v-model="newdirname" class="flex-1 bg-light rounded px-2" style="height: 95rpx;" placeholder="新建文件夹名称" /></f-dialog>
-	<!-- 排序框，底部弹出，便利排序操作数组，为当前索引绑定文字蓝色样式 -->
-	<uni-popup ref="sort" type="bottom">
-		<view class="bg-white">
-			<view class="flex align-center justify-center py-3 font border-bottom border-light-secondary"
-			v-for="(item,index) in sortOptions" :key="index"
-			:class="index === sortIndex ? 'text-main' : 'text-dark'"
-			hover-class="bg-light"
-			@click="changeSort(index)">
-				{{item.name}}
+		<!-- 排序框，底部弹出，便利排序操作数组，为当前索引绑定文字蓝色样式 -->
+		<uni-popup ref="sort" type="bottom">
+			<view class="bg-white">
+				<view
+					class="flex align-center justify-center py-3 font border-bottom border-light-secondary"
+					v-for="(item, index) in sortOptions"
+					:key="index"
+					:class="index === sortIndex ? 'text-main' : 'text-dark'"
+					hover-class="bg-light"
+					@click="changeSort(index)"
+				>
+					{{ item.name }}
+				</view>
 			</view>
-			
-		</view>
-	</uni-popup>
+		</uni-popup>
 	</view>
 </template>
 
@@ -98,7 +100,7 @@ export default {
 	data() {
 		return {
 			sortIndex: 0,
-			sortOptions:[
+			sortOptions: [
 				{
 					name: '按名称排序'
 				},
@@ -108,39 +110,40 @@ export default {
 			],
 			newdirname: '',
 			renameValue: '',
-			list: [
-				{
-					type: 'dir',
-					name: '我的笔记',
-					create_time: '2020-10-21 08:00',
-					checked: false
-				},
-				{
-					type: 'image',
-					name: '风景.jpg',
-					data: 'https://avatars2.githubusercontent.com/u/55441045?s=400&v=4',
-					checked: false
-				},
-				{
-					type: 'video',
-					name: 'uniapp实战教程.mp4',
-					data:'https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200fba0000bpo4s1b82vu9dp4ehlog&line=0',
-					create_time: '2020-10-21 08:00',
-					checked: false
-				},
-				{
-					type: 'text',
-					name: '记事本.txt',
-					create_time: '2020-10-21 08:00',
-					checked: false
-				},
-				{
-					type: 'none',
-					name: '压缩包.rar',
-					create_time: '2020-10-21 08:00',
-					checked: false
-				}
-			],
+			list: [],
+			// list: [
+			// 	{
+			// 		type: 'dir',
+			// 		name: '我的笔记',
+			// 		create_time: '2020-10-21 08:00',
+			// 		checked: false
+			// 	},
+			// 	{
+			// 		type: 'image',
+			// 		name: '风景.jpg',
+			// 		data: 'https://avatars2.githubusercontent.com/u/55441045?s=400&v=4',
+			// 		checked: false
+			// 	},
+			// 	{
+			// 		type: 'video',
+			// 		name: 'uniapp实战教程.mp4',
+			// 		data:'https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200fba0000bpo4s1b82vu9dp4ehlog&line=0',
+			// 		create_time: '2020-10-21 08:00',
+			// 		checked: false
+			// 	},
+			// 	{
+			// 		type: 'text',
+			// 		name: '记事本.txt',
+			// 		create_time: '2020-10-21 08:00',
+			// 		checked: false
+			// 	},
+			// 	{
+			// 		type: 'none',
+			// 		name: '压缩包.rar',
+			// 		create_time: '2020-10-21 08:00',
+			// 		checked: false
+			// 	}
+			// ],
 			addList: [
 				{
 					icon: 'icon-shangchuantupian',
@@ -166,13 +169,14 @@ export default {
 		};
 	},
 	onLoad() {
-		uni.request({
-			url:'http://127.0.0.1:7001/list',
-			method:'GET',
-			success: res => {
-				console.log(res.data);
-			}
-		});
+		// uni.request({
+		// 	url: 'http://127.0.0.1:7001/list',
+		// 	method: 'GET',
+		// 	success: res => {
+		// 		console.log(res.data);
+		// 	}
+		// });
+		this.getData();
 	},
 	methods: {
 		select(e) {
@@ -250,26 +254,53 @@ export default {
 		openAddDialog() {
 			this.$refs.add.open();
 		},
-		// 
+		//
 		doEvent(item) {
 			// 列表点击事件
-			switch(item.type){
-				case 'image': //预览图片
-				let images = this.list.filter(item => {
-					return item.type === 'image'
-				})
-				uni.previewImage({
-					current: item.data,
-					urls:images.map(item => item.data)
-				})
+			switch (item.type) {
+				case 'image': 
+					let images = this.list.filter(item => {
+						return item.type === 'image';
+					});
+					//预览图片
+					uni.previewImage({
+						current: item.url,
+						urls: images.map(item => item.url)
+					});
 					break;
 				case 'video':
-				uni.navigateTo({
-					url:'../video/video?url='+item.data+'&title='+item.name,
-				})
+					uni.navigateTo({
+						url: '../video/video?url=' + item.url + '&title=' + item.name
+					});
+					break;
 				default:
 					break;
 			}
+		},
+		formatList(list) {
+			return list.map(item => {
+				let type = 'none';
+				if (item.isdir === 1) {
+					type = 'dir';
+				} else {
+					type = item.ext.split('/'[0] || 'none');
+				}
+				return {
+					type,
+					checked: false,
+					...item
+				};
+			});
+		},
+		getData() {
+			this.$H
+				.get('/file?file_id=0', {
+					token: true
+				})
+				.then(res => {
+					console.log(res);
+					this.list = this.formatList(res.rows);
+				});
 		},
 		// 切换排序
 		changeSort(index) {

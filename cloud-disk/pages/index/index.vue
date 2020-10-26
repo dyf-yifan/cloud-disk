@@ -215,12 +215,20 @@ export default {
 					this.$refs.rename.open(close => {
 						if (this.renameValue == '') {
 							return uni.showToast({
-								title: '文件名不能为空',
+								title: '文件名称不能为空',
 								icon: 'none'
 							});
 						}
-						// 更新该元素的name值，实时看到效果
-						this.checkList[0].name = this.renameValue;
+						console.log(this.checkList[0].id + '>>>>>>>' + this.file_id);
+						// 重命名接口需要三个参数，自身id，目录id，新名称
+						this.$H.post('/file/rename', { id: this.checkList[0].id, file_id: this.file_id, name: this.renameValue }, { token: true }).then(res => {
+							// 更新该元素的name值，实时看到效果
+							this.checkList[0].name = this.renameValue;
+							uni.showToast({
+								title:'重命名成功',
+								icon:'none'
+							})
+						});
 						close();
 					});
 					break;

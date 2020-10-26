@@ -260,6 +260,10 @@ export default {
 				case '下载':
 					this.download();
 					break;
+				case '分享':
+					this.share();
+					this.handleCheckAll(false);
+					break;
 				default:
 					break;
 			}
@@ -482,6 +486,30 @@ export default {
 			});
 			this.handleCheckAll(false);
 	},
+	share(){
+		this.$H.post(
+		'/share/create',
+		{
+			file_id:this.checkList[0].id
+		},
+		{token:true}).then(res => {
+			uni.showModal({
+				content:res,
+				showCancel:false,
+				success: result => {
+					uni.setClipboardData({
+						data:res,
+						success: () => {
+							uni.showToast({
+								title:'复制成功',
+								icon:'none'
+							});
+						}
+					});
+				}
+			});
+		});
+	}
 },
 	components: {
 		navBar,

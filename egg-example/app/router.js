@@ -17,11 +17,11 @@ module.exports = app => {
 	router.post('/logout', controller.user.logout);
 	router.post('/upload', controller.file.upload);
 	//剩余容量
-	router.get('/getsize', controller.user.getSize);
+	router.get('/getsize', controller.file.getSize);
 	router.get('/file', controller.file.list);
 	router.post('/file/createdir', controller.file.createdir);
 	router.post('/file/rename', controller.file.rename);
-	router.post('/file/delete', controller.file.delete);
+	router.post('/file/delete',controller.file.deletel);
 	router.get('/file/search', controller.file.search);
 	router.post('/share/create', controller.share.create);
 	router.get('/share/list', controller.share.list);

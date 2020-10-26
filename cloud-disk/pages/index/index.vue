@@ -497,6 +497,7 @@ export default {
 				content:res,
 				showCancel:false,
 				success: result => {
+					// #ifndef H5
 					uni.setClipboardData({
 						data:res,
 						success: () => {
@@ -506,6 +507,7 @@ export default {
 							});
 						}
 					});
+					// #endif
 				}
 			});
 		});

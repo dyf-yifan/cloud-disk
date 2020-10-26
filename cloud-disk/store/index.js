@@ -124,5 +124,35 @@ export default new Vuex.Store({
 				})
 			}
 		},
+		
+		getShareUrl({
+			state
+		}) {
+			// #ifndef H5
+			uni.getClipboardData({
+				success: (res) => {
+					if (res.data.includes('http://127.0.0.1:7001/')) {
+						let key = res.data.substring(res.data.lastIndexOf('\/') + 1,res.data.length)
+						if(!key) {
+							return
+						}
+						uni.showModal({
+							content:'检测到有分享内容，是否打开？',
+							success: (res) => {
+								if(res.confirm) {
+									uni.navigateTo({
+										url: "/pages/shareurl/shareurl?key="+key
+									})
+									// 清空剪切板
+									uni.setClipboardData({
+										data: ''
+									});
+								}
+							}
+						});
+					}
+				}
+			})
+		}
 	}
 })

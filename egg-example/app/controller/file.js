@@ -93,7 +93,8 @@ class FileController extends Controller {
 			return ctx.apiSuccess(res)
 		}
 		ctx.apiFail('上传失败')
-	};
+	}
+	
 	// 剩余容量
 	async getSize() {
 		const {
@@ -104,7 +105,7 @@ class FileController extends Controller {
 			total_size: ctx.authUser.total_size,
 			used_size: ctx.authUser.used_size,
 		})
-	};
+	}
 
 	// 文件列表
 	async list() {
@@ -253,7 +254,7 @@ class FileController extends Controller {
 
 
 	// 批量删除
-	async delete() {
+	async deletel() {
 		const {
 			ctx,
 			app

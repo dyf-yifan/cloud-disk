@@ -5,9 +5,14 @@
 			// console.log(this.$store.state.test);
 			//初始化用户信息
 			this.$store.dispatch('initUser')
+			// 初始化任务列表
+			this.$store.dispatch('initList');
 		},
 		onShow: function() {
 			console.log('App Show')
+			if(this.$store.state.user) {
+				this.$store.state.dispatch('getShareUrl');
+			}
 		},
 		onHide: function() {
 			console.log('App Hide')

@@ -4,8 +4,8 @@
 		<nav-bar>
 			<template v-if="checkCount === 0">
 				<text class="font-md ml-3" slot="left">首页</text>
-				<template slot="right">
-					<view style="width: 60rpx;height: 60rpx;" @tap="openAddDialog" class="flex align-center justify-center bg-light rounded-circle mr-3">
+				<template slot="left">
+					<view style="width: 60rpx;height: 60rpx;" @tap="backUp" v-if="current" class="flex align-center justify-center bg-light rounded-circle mr-3">
 						<text class="iconfont icon-hao"></text>
 					</view>
 					<view class="flex align-center justify-center bg-light rounded-circle mr-3" @click="openSortDialog"><text class="iconfont icon-gengduo"></text></view>
@@ -99,13 +99,16 @@ import uniPopup from '@/components/uni-ui/uni-popup/uni-popup.vue';
 export default {
 	data() {
 		return {
+			dirs: [],
 			sortIndex: 0,
 			sortOptions: [
 				{
-					name: '按名称排序'
+					name: '按名称排序',
+					key: 'name'
 				},
 				{
-					name: '按时间排序'
+					name: '按时间排序',
+					key: 'created_time'
 				}
 			],
 			newdirname: '',
@@ -176,6 +179,10 @@ export default {
 		// 		console.log(res.data);
 		// 	}
 		// });
+		let dirs = uni.getStorageSync('dirs');
+		if (dirs) {
+			this.dirs = JSON.parse(dirs);
+		}
 		this.getData();
 	},
 	methods: {
@@ -258,7 +265,7 @@ export default {
 		doEvent(item) {
 			// 列表点击事件
 			switch (item.type) {
-				case 'image': 
+				case 'image':
 					let images = this.list.filter(item => {
 						return item.type === 'image';
 					});
@@ -274,9 +281,19 @@ export default {
 					});
 					break;
 				default:
+					this.dirs.push({
+						id: item.id,
+						name: item.name
+					});
+					this.getData();
+					uni.setStorage({
+						key: 'dirs',
+						data: JSON.stringify(this.dirs)
+					});
 					break;
 			}
 		},
+		// 将数据格式化为我们需要显示的样子，不同的文件类型，是否选中
 		formatList(list) {
 			return list.map(item => {
 				let type = 'none';
@@ -293,22 +310,36 @@ export default {
 			});
 		},
 		getData() {
+			console.log(this.file_id + '>>>>>>>>>>>>>>>>');
+			let orderby = this.sortOptions[this.sortIndex].key;
+			console.log(orderby + '&&&&&&&&&&&&');
 			this.$H
-				.get('/file?file_id=0', {
+				.get(`/file?file_id=${this.file_id}&orderby=${orderby}`, {
 					token: true
 				})
 				.then(res => {
-					console.log(res);
 					this.list = this.formatList(res.rows);
 				});
 		},
 		// 切换排序
 		changeSort(index) {
+			// this.sortIndex = index;
+			// this.$refs.sort.close();
 			this.sortIndex = index;
+			this.getData();
 			this.$refs.sort.close();
 		},
 		openSortDialog() {
 			this.$refs.sort.open();
+		},
+		// 返回上一个目录
+		backUp() {
+			this.dirs.pop();
+			this.getData();
+			uni.setStorage({
+				key: 'dirs',
+				data: JSON.stringify(this.dirs)
+			});
 		}
 	},
 	components: {
@@ -358,6 +389,20 @@ export default {
 					name: '重命名'
 				}
 			];
+		},
+		file_id() {
+			let l = this.dirs.length;
+			if (l === 0) {
+				return 0;
+			}
+			return this.dirs[l - 1].id;
+		},
+		current() {
+			let l = this.dirs.length;
+			if (l === 0) {
+				return false;
+			}
+			return this.dirs[l - 1];
 		}
 	}
 };

@@ -10,7 +10,7 @@ export default new Vuex.Store({
 		token: null
 	},
 	actions: {
-		login({
+		logout({
 			state
 		}) {
 			$H.post('/logout', {}, {
@@ -18,9 +18,11 @@ export default new Vuex.Store({
 			})
 			state.user = null
 			state.token = null
-			uni.removeStorageSync('user')
-			uni.removeStorageSync('token')
+			uni.removeStorageSync('user');
+			uni.removeStorageSync('token');
+			uni.removeStorageSync('dirs');
 
+			// 重启应用
 			uni.reLaunch({
 				url: '/pages/login/login'
 			});

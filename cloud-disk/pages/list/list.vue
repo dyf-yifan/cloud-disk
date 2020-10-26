@@ -45,25 +45,6 @@
 						<view class="p-2 border-bottom border-light-secondary font text-muted">上传完成{{ uploaded.length }}</view>
 						<f-list v-for="(item, index) in uploaded" :key="'d' + index" :item="item" :index="index" :showRight="false"></f-list>
 					</template>
-					<!-- <view class="bg-light flex align-center font-sm px-2 text-muted" style="height: 60rpx;">
-						文件下载至：storage/XXXX/XXXX
-					</view>
-					<view class="bg-light flex align-center font-sm px-2 text-muted">
-						下载中({{downing.length}})
-					</view> -->
-					<!-- 注意 -->
-					<!-- 	<f-list v-for="(item,index) in downing" :key="'i'+index" :item="item" :index="index">
-						<view class="flex align-center text-main" style="height: 70rpx;">
-							<text class="iconfont icon-zanting"></text>
-							<text class="ml-1">{{item.download}}%</text>
-						</view> -->
-					<!-- 进度条组件，uni-app自带的，无需引入。percent双属性绑定下载百分比数值 -->
-					<!-- 	<progress slot="bottom" :percent="item.download" activeColor="#009CFF" :stroke-width="4"></progress>
-					</f-list>
-					<view class="p-2 border-bottom border-light-secondary font text-muted">
-						下载完成{{item.length}}
-					</view>
-					<f-list v-for="(item ,index) in downed" :key="'d'+index" :item="item" :index="index" :showRight="false"></f-list> -->
 				</scroll-view>
 			</swiper-item>
 		</swiper>
@@ -127,6 +108,20 @@ export default {
 	methods: {
 		changeTab(index) {
 			this.tabIndex = index;
+		},
+		onNavigationBarButtonTap(){
+			uni.showModal({
+				content:'是否要清除传输记录？',
+				success: res => {
+					if (res.confirm) {
+						this.$store.dispatch('clearList');
+						uni.showToast({
+							title:'清除成功',
+							icon:'icon'
+						});
+					}
+				}
+			});
 		}
 	},
 	components: {

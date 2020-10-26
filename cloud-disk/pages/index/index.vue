@@ -257,6 +257,9 @@ export default {
 						close();
 					});
 					break;
+				case '下载':
+					this.download();
+					break;
 				default:
 					break;
 			}
@@ -407,7 +410,7 @@ export default {
 			// 上传文件的类型
 			let t = type;
 			// 上传的key用来区分每个文件
-			const key = ths.getID(8);
+			const key = this.getID(8);
 			// 构建上传文件的对象，文件名，类型，大小，唯一的key，进度，状态，创建时间
 			let obj = {
 				name: file.name,
@@ -433,9 +436,53 @@ export default {
 				// 上传成功，请求数据更新列表
 				this.getData();
 			})
-			
-		}
+
+		},
+		download(){
+			this.checkList.forEach(item => {
+				if(item.isdir === 0) {
+					const key = this.getID(8);
+
+			// 构建上传文件的对象，文件名，类型，大小，唯一的key，进度，状态，创建时间
+			let obj = {
+				name: item.name,
+				type: item,type,
+				size: item.size,
+				key,
+				progress:0,
+				status:true,
+				created_time:new Date().getTime()
+			};
+			// 创建上传任务,分发给Vuex的Actions，异步上传调度，主要是实现上传进度的回调
+			this.$store.dispatch('createDownLoadJob',obj);
+			let url = item.url;
+			let d = uni.downloadFile({
+				url,
+				success: res => {
+					if(res.statusCode === 200) {
+						console.log('下载成功',res);
+						uni.saveFile({
+							tempFilePath:item.tempFilePath
+						});
+					}
+				}
+			});
+			d.onProgressUpdate(res => {
+				this.$store.dispatch('updateDownLoadJob',{
+					status:true,
+					progress:res.progress,
+					key
+				});
+				});
+				}
+			});
+			uni.showToast({
+				title:'已加入下载任务',
+				icon:'none'
+			});
+			this.handleCheckAll(false);
 	},
+},
 	components: {
 		navBar,
 		fList,
